@@ -8,6 +8,7 @@ public class Grid{
         grid = new Block[4][4];
         addRandomBlock();
         addRandomBlock();
+        canPlay = false;
     }
 
     public void addRandomBlock(){
@@ -27,6 +28,17 @@ public class Grid{
             newBlock = new Block((int)newBlockLocation.x, (int)newBlockLocation.y, scale, 2);
         
         grid[newBlock.row()][newBlock.col()] = newBlock;
+    }
+
+    public boolean canPlay(){
+        return canPlay;
+    }
+
+    public void reset(){
+        grid = new Block[4][4];
+        addRandomBlock();
+        addRandomBlock();
+        canPlay = true;
     }
 
     public void display(){
@@ -76,17 +88,13 @@ public class Grid{
         return list;
     }
 
-    public void shift(String direction){
-        System.out.println(toString() + "\n");
-        
+    public void shift(String direction){        
         if(direction.equals("up"))
             swapRows();
         if(direction.equals("right") || direction.equals("down"))
             swapCols();
         if(direction.equals("up") || direction.equals("down"))
             rotate();
-
-        System.out.println(toString() + "\n");
 
         boolean hasChanged = false;
 
@@ -107,8 +115,6 @@ public class Grid{
             }
         }
 
-        System.out.println(toString() + "\n");
-
         if(direction.equals("up") || direction.equals("down")){
             rotate();
             rotate();
@@ -122,8 +128,6 @@ public class Grid{
         
         if(hasChanged)
             addRandomBlock();
-
-        System.out.println(toString() + "\n\n");
     }
 
     private void swapCols(){

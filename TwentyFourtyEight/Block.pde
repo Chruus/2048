@@ -71,12 +71,12 @@ public class Block{
         pushStyle();
         pushMatrix();
         
-        int x = col * scale + scale / 2;
-        int y = row * scale + scale / 2;
+        int x = col * (scale + 3) + scale / 2 + 1;
+        int y = row * (scale + 3) + scale / 2 + 1;
 
         rectMode(CENTER);
         fill(clr);
-        rect(x, y, scale, scale);
+        rect(x, y, scale, scale, 4, 4, 4, 4);
 
         textAlign(CENTER);
         textSize(36);
